@@ -59,10 +59,6 @@ public class Gameplay extends JPanel implements ActionListener, KeyListener {
        graphics.setColor(Color.orange);
        graphics.fillRect(playerX,550,100,8);
 
-       //test for begin
-        graphics.setColor(Color.red);
-        graphics.fillRect(10,400,10,10);
-
         //ball
         graphics.setColor(Color.cyan);
         graphics.fillOval(ball_positionX,ball_positionY,20,20);
@@ -150,7 +146,7 @@ public class Gameplay extends JPanel implements ActionListener, KeyListener {
 
    public int randomYPositionStart(){
         Random start_position_of_Y = new Random();
-        return start_position_of_Y.nextInt(200) + 200;        
+        return start_position_of_Y.nextInt(200) + 200;
    }
 
     @Override
