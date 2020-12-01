@@ -3,7 +3,7 @@ package com.company;
 import java.awt.*;
 
 public class MapOfBricks {
-    public int map[][];
+    public int[][] map;
     public int brick_width;
     public int brick_height;
     public MapOfBricks(int row, int col){

@@ -59,13 +59,17 @@ public class Gameplay extends JPanel implements ActionListener, KeyListener {
        graphics.setColor(Color.orange);
        graphics.fillRect(playerX,550,100,8);
 
+       //test for begin
+        graphics.setColor(Color.red);
+        graphics.fillRect(10,400,10,10);
+
         //ball
         graphics.setColor(Color.cyan);
         graphics.fillOval(ball_positionX,ball_positionY,20,20);
 
         /*Now we check if the ball fell*/
 
-        if(ball_positionY>600){
+        if(ball_positionY>555){
             play = false;
             graphics.setColor(Color.RED);
             graphics.setFont(new Font("serif", Font.BOLD, 35));
@@ -126,15 +130,12 @@ public class Gameplay extends JPanel implements ActionListener, KeyListener {
             }
             ball_positionX+= ball_directionX;
             ball_positionY+= ball_directionY;
-            if(ball_positionX < 0){
-                ball_directionX = - ball_directionX;
-            }
-            if(ball_positionY < 0){
-                ball_directionY = - ball_directionY;
-            }
-            if(ball_positionX > 670){
-                ball_directionX = - ball_directionX;
-            }
+            if(ball_positionX < 0)
+                ball_directionX = -ball_directionX;
+            if(ball_positionY < 0)
+                ball_directionY = -ball_directionY;
+            if(ball_positionX > 670)
+                ball_directionX = -ball_directionX;
 
 
         }
@@ -149,7 +150,7 @@ public class Gameplay extends JPanel implements ActionListener, KeyListener {
 
    public int randomYPositionStart(){
         Random start_position_of_Y = new Random();
-        return start_position_of_Y.nextInt(300-40) + 40;        //Needs more precision
+        return start_position_of_Y.nextInt(200) + 200;        
    }
 
     @Override
