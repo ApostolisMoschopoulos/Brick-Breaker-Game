@@ -190,13 +190,11 @@ public class Gameplay extends JPanel implements ActionListener, KeyListener {
             }
         }
 
-        if(e.getKeyCode() == KeyEvent.VK_SPACE){
-            if(play)
-                play = false;
-            if(!play)
-                play = true;
-
-        }
+        if((e.getKeyCode() == KeyEvent.VK_SPACE) && play)
+            play = false;
+        if ((e.getKeyCode() == KeyEvent.VK_SPACE) && !play)
+            play = true;
+        
     }
 
     @Override
