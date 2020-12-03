@@ -41,7 +41,7 @@ public class Gameplay extends JPanel implements ActionListener, KeyListener {
 
         //background
         graphics.setColor(Color.BLACK);
-        graphics.fillRect(1,1,692,592);     //x,y positions width,height size
+        graphics.fillRect(1,1,682,592);     //x,y positions width,height size
 
         //map
         map.draw((Graphics2D)graphics);
@@ -55,7 +55,7 @@ public class Gameplay extends JPanel implements ActionListener, KeyListener {
         graphics.setColor(Color.green);
         graphics.fillRect(0,0,3,592);
         graphics.fillRect(0,0,692,3);
-        graphics.fillRect(691,0,3,592);
+        graphics.fillRect(682,0,3,592);
 
         //paddle
        graphics.setColor(Color.orange);
@@ -131,7 +131,7 @@ public class Gameplay extends JPanel implements ActionListener, KeyListener {
                 ball_directionX = -ball_directionX;
             if(ball_positionY < 0)
                 ball_directionY = -ball_directionY;
-            if(ball_positionX > 670)
+            if(ball_positionX > 665)
                 ball_directionX = -ball_directionX;
 
 
@@ -158,8 +158,8 @@ public class Gameplay extends JPanel implements ActionListener, KeyListener {
     @Override
     public void keyPressed(KeyEvent e) {
         if (e.getKeyCode() == KeyEvent.VK_RIGHT){
-            if(playerX>599){
-                playerX = 600;      //thus the paddle will not leave the screen from the right side
+            if(playerX>560){
+                playerX = 559;      //thus the paddle will not leave the screen from the right side
             }
             else{
                 move_Right();
@@ -192,9 +192,8 @@ public class Gameplay extends JPanel implements ActionListener, KeyListener {
 
         if((e.getKeyCode() == KeyEvent.VK_SPACE) && play)
             play = false;
-        if ((e.getKeyCode() == KeyEvent.VK_SPACE) && !play)
+        if((e.getKeyCode() == KeyEvent.VK_SPACE) && !play)
             play = true;
-        
     }
 
     @Override

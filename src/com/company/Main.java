@@ -6,7 +6,7 @@ import java.awt.*;
 public class Main {
 
     public static void main(String[] args) {
-        Image icon = Toolkit.getDefaultToolkit().getImage("C:\\Users\\User\\Downloads\\brickBreaker.png");
+       Image icon = Toolkit.getDefaultToolkit().getImage("C:\\Users\\User\\Downloads\\brickBreaker.png");
         Gameplay gameplay = new Gameplay();
         /*Defining our Frame and it's characteristics */
         JFrame Frame = new JFrame();
@@ -15,7 +15,7 @@ public class Main {
         Frame.setResizable(true);
         Frame.setLocationRelativeTo(null);
         Frame.setVisible(true);
-        Frame.setIconImage(icon);
+       // Frame.setIconImage(icon); this is the bug
         Frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         Frame.add(gameplay);
