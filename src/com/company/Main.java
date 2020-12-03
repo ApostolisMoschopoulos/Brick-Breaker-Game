@@ -1,13 +1,12 @@
 package com.company;
 
 import javax.swing.*;
+import java.awt.*;
 
 public class Main {
 
     public static void main(String[] args) {
-
-       // ImageIcon image = new  ImageIcon('C:\Users\User\Downloads\brickbreaer.png');   // doesn't work somewhy!
-
+        Image icon = Toolkit.getDefaultToolkit().getImage("C:\\Users\\User\\Downloads\\brickBreaker.png");
         Gameplay gameplay = new Gameplay();
         /*Defining our Frame and it's characteristics */
         JFrame Frame = new JFrame();
@@ -16,7 +15,7 @@ public class Main {
         Frame.setResizable(true);
         Frame.setLocationRelativeTo(null);
         Frame.setVisible(true);
-       // Frame.setIconImage(image);
+        Frame.setIconImage(icon);
         Frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         Frame.add(gameplay);
