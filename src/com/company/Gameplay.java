@@ -12,7 +12,6 @@ public class Gameplay extends JPanel implements ActionListener, KeyListener {
     private int total_times_played;
     private int bricks_remaining = 21;
     private Timer timer;
-    private int delay = 1;      //determines how fast the ball will move
 
     private int playerX = 310;
 
@@ -31,7 +30,10 @@ public class Gameplay extends JPanel implements ActionListener, KeyListener {
         addKeyListener(this);
         setFocusable(true);
         setFocusTraversalKeysEnabled(false);
-        timer = new Timer(delay, this);
+        //determines how fast the ball will move
+        int delay = 1;
+        timer = new Timer(delay,
+                this);
         timer.start();
     }
 
@@ -73,7 +75,7 @@ public class Gameplay extends JPanel implements ActionListener, KeyListener {
             graphics.drawString("Press enter to restart.", 140, 400);
         }
 
-        if(score == 105){            //doesn't work if condition is; if(bricks_remaining == 0)
+        if(bricks_remaining==0){            //works the same with condition score == 105
             play = false;
             graphics.setColor(Color.magenta);
             graphics.setFont(new Font("serif", Font.BOLD, 35));
@@ -104,16 +106,15 @@ public class Gameplay extends JPanel implements ActionListener, KeyListener {
 
                         Rectangle rectangle = new Rectangle(brickX,brickY,brick_width,brick_height);
                         Rectangle ball_rectangle = new Rectangle(ball_positionX,ball_positionY,20,20);
-                        Rectangle brick_rectangle = rectangle;
 
-                        if(ball_rectangle.intersects(brick_rectangle)){
+                        if(ball_rectangle.intersects(rectangle)){
                             map.setBrickValue(0,i,j);
-                            bricks_remaining=-1;
+                            bricks_remaining--;
                             score+=5;
                             ball_directionY = - ball_directionY;
                             ball_directionX = - ball_directionX;
 
-                            if(ball_positionX + 20 < brick_rectangle.x || ball_positionX > brick_rectangle.width){
+                            if(ball_positionX + 20 < rectangle.x || ball_positionX > rectangle.width){
                                 ball_directionX = -ball_directionX;
                             } else {
                                 ball_directionY = - ball_directionY;
@@ -187,6 +188,14 @@ public class Gameplay extends JPanel implements ActionListener, KeyListener {
                  map = new MapOfBricks(3,7);
                  repaint();
             }
+        }
+
+        if(e.getKeyCode() == KeyEvent.VK_SPACE){
+            if(play)
+                play = false;
+            if(!play)
+                play = true;
+
         }
     }
 
