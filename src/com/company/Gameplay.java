@@ -49,6 +49,11 @@ public class Gameplay extends JPanel implements ActionListener, KeyListener {
         //map
         map.draw((Graphics2D)graphics);
 
+        //important
+        graphics.setColor(Color.WHITE);
+        graphics.setFont(new Font("serif", Font.BOLD, 20));
+        graphics.drawString("Black lives matter",10,30);
+
         //score
         graphics.setColor(Color.lightGray);
         graphics.setFont(new Font("serif", Font.BOLD, 20));
@@ -162,7 +167,7 @@ public class Gameplay extends JPanel implements ActionListener, KeyListener {
     public void keyPressed(KeyEvent e) {
         if (e.getKeyCode() == KeyEvent.VK_RIGHT){
             if(playerX>560){
-                playerX = 559;      //thus the paddle will not leave the screen from the right side
+                playerX = 559;
             }
             else{
                 move_Right();
@@ -170,7 +175,7 @@ public class Gameplay extends JPanel implements ActionListener, KeyListener {
         }
         if (e.getKeyCode() == KeyEvent.VK_LEFT){
             if(playerX < 10){
-                playerX = 9;   //thus the paddle will not leave the screen from the left side
+                playerX = 9;
             }
             else {
                 move_Left();
