@@ -11,29 +11,32 @@ public class Gameplay extends JPanel implements ActionListener, KeyListener {
     private int score = 0;
     private int total_times_played;
     private int bricks_remaining = 21;
-    private Timer timer;
+    private final Timer timer;
 
     private int playerX = 310;
 
-    private int ball_positionX ;        //used to be around 120
-    private int ball_positionY ;        //used to be around 120
-    private int ball_directionX = -1;
-    private int ball_directionY = -2;
+    private int ball_positionX ;
+    private int ball_positionY ;
+    private int ball_speedX;
+    private int ball_speedY;
+    private int difficulty = -1;
 
     private MapOfBricks map ;
 
     public Gameplay(){
         ball_positionX = randomXPositionStart();
         ball_positionY = randomYPositionStart();
+        while(difficulty > 7 || difficulty < 0)
+            difficulty = Integer.parseInt(JOptionPane.showInputDialog("Set difficulty: 1-Easiest , 7-Hardest"));
+        ball_speedX = difficulty;
+        ball_speedY = difficulty;
+
         map = new MapOfBricks(3,7);
         total_times_played = 1;
         addKeyListener(this);
         setFocusable(true);
         setFocusTraversalKeysEnabled(false);
-        //determines how fast the ball will move
-        int delay = 1;
-        timer = new Timer(delay,
-                this);
+        timer = new Timer(1, this);
         timer.start();
     }
 
@@ -93,7 +96,7 @@ public class Gameplay extends JPanel implements ActionListener, KeyListener {
         if(play){
 
             if(new Rectangle(ball_positionX,ball_positionY,20,20).intersects(new Rectangle(playerX,550,100,8))){
-                ball_directionY = - ball_directionY;
+                ball_speedY = -ball_speedY;
             }
 
            A: for(int i = 0; i < map.map.length; i++){            //in map.map first map is the variable in class Gameplay
@@ -111,13 +114,13 @@ public class Gameplay extends JPanel implements ActionListener, KeyListener {
                             map.setBrickValue(0,i,j);
                             bricks_remaining--;
                             score+=5;
-                            ball_directionY = - ball_directionY;
-                            ball_directionX = - ball_directionX;
-
+                            ball_speedY = -ball_speedY;
+                            ball_speedX = -ball_speedX;
+                            /* Needs precision */
                             if(ball_positionX + 20 < rectangle.x || ball_positionX > rectangle.width){
-                                ball_directionX = -ball_directionX;
+                                ball_speedX = -ball_speedX;
                             } else {
-                                ball_directionY = - ball_directionY;
+                                ball_speedY = -ball_speedY;
                             }
                             break A;
                         }
@@ -125,14 +128,14 @@ public class Gameplay extends JPanel implements ActionListener, KeyListener {
                     }
                 }
             }
-            ball_positionX+= ball_directionX;
-            ball_positionY+= ball_directionY;
+            ball_positionX+= ball_speedX;
+            ball_positionY+= ball_speedY;
             if(ball_positionX < 0)
-                ball_directionX = -ball_directionX;
+                ball_speedX = -ball_speedX;
             if(ball_positionY < 0)
-                ball_directionY = -ball_directionY;
+                ball_speedY = -ball_speedY;
             if(ball_positionX > 665)
-                ball_directionX = -ball_directionX;
+                ball_speedX = -ball_speedX;
 
 
         }
@@ -183,8 +186,8 @@ public class Gameplay extends JPanel implements ActionListener, KeyListener {
                 bricks_remaining = 21;
                 ball_positionX = randomXPositionStart();
                 ball_positionY = randomYPositionStart();
-                 ball_directionX = -1;
-                 ball_directionY = -2;
+                 ball_speedX = difficulty;
+                 ball_speedY = difficulty;
                  map = new MapOfBricks(3,7);
                  repaint();
             }
@@ -209,4 +212,5 @@ public class Gameplay extends JPanel implements ActionListener, KeyListener {
         play = true;
         playerX-=20;
     }
+
 }

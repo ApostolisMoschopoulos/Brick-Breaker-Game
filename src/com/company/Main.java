@@ -12,13 +12,14 @@ public class Main {
         JFrame Frame = new JFrame();
         Frame.setBounds(10,10,700,600);
         Frame.setTitle("Break all the bricks!");
-        Frame.setResizable(true);
+        Frame.setResizable(false);
         Frame.setLocationRelativeTo(null);
-        Frame.setVisible(true);
-       // Frame.setIconImage(icon); this is the bug
+        Frame.setIconImage(icon); //this is the bug
         Frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         Frame.add(gameplay);
+
+        Frame.setVisible(true);
 
     }
 }
